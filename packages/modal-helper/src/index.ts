@@ -1,7 +1,7 @@
-import { createServer } from 'node:http';
-import type { IncomingMessage, ServerResponse } from 'node:http';
-import { URL } from 'node:url';
 import pg from 'pg';
+import { createServer } from 'node:http';
+import { URL } from 'node:url';
+import type { IncomingMessage, ServerResponse } from 'node:http';
 
 const { Pool } = pg;
 
@@ -10,8 +10,7 @@ const HOST = process.env.HOST || '0.0.0.0';
 const PORT = Number(process.env.PORT || 5477);
 const CONNECTION_TIMEOUT_MS = 8000;
 const QUERY_TIMEOUT_MS = 10000;
-const SESSION_ID_PATTERN =
-  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+const SESSION_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 type DatabaseKey = 'local' | 'prod';
 

@@ -4,8 +4,7 @@ import { useEffect, useState } from 'react';
 
 const HELPER_URL = 'http://127.0.0.1:5477/sandbox-id';
 const DEFAULT_LOCAL_DATABASE_URL = 'postgresql://postgres:mysecretpassword@localhost:5432/postgres';
-const SESSION_ID_PATTERN =
-  /[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/i;
+const SESSION_ID_PATTERN = /[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/i;
 const LIVE_SANDBOX_WINDOW_SECONDS = 24 * 60 * 60;
 const SETTINGS_STORAGE_KEY = 'modalLogsSettings';
 const PRODUCTION_TARGET = 'dev-sandbox';
@@ -351,7 +350,11 @@ const Popup = () => {
                 {buttonText}
               </button>
 
-              <button className="modal-helper__icon-button" type="button" onClick={openSettings} aria-label="Open database settings">
+              <button
+                className="modal-helper__icon-button"
+                type="button"
+                onClick={openSettings}
+                aria-label="Open database settings">
                 <SettingsIcon aria-hidden="true" size={17} strokeWidth={2.25} />
               </button>
             </div>
