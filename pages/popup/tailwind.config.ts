@@ -1,5 +1,5 @@
-import { withUI } from '@extension/ui';
+import type { Config } from 'tailwindcss';
 
-export default withUI({
+export default {
   content: ['index.html', 'src/**/*.tsx'],
-});
+} satisfies Config;

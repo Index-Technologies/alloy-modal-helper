@@ -59,6 +59,16 @@
 This boilerplate helps you create Chrome/Firefox extensions using React and Typescript. It improves
 the build speed and development experience by using Vite and Turborepo.
 
+## Modal Logs Helper
+
+Run the local helper before using the popup button:
+
+```bash
+docker compose up modal-helper
+```
+
+The helper listens on `http://127.0.0.1:5477` and looks up Modal sandbox IDs from the host Postgres database.
+
 ## Features
 
 - [React](https://reactjs.org/)

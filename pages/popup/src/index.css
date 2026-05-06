@@ -1,6 +1,12 @@
 @import '@extension/ui/global.css';
 
 body {
-  width: 300px;
-  height: 260px;
+  width: 278px;
+  margin: 0;
+}
+
+button,
+select,
+input {
+  font-family: inherit;
 }

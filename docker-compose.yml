@@ -1,0 +1,13 @@
+services:
+  modal-helper:
+    build:
+      context: .
+      dockerfile: packages/modal-helper/Dockerfile
+    environment:
+      DATABASE_URL: postgresql://postgres:mysecretpassword@host.docker.internal:5432/postgres
+      HOST: 0.0.0.0
+      PORT: 5477
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    ports:
+      - 127.0.0.1:5477:5477
