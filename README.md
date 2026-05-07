@@ -22,10 +22,18 @@ Use the cog button in the extension popup to configure:
 - Local database URL, used on `localhost`
 - Prod database URL, used on `alloy.app`
 
-For prod RDS connections, include SSL in the URL:
+When the helper is running in Docker, the local database URL must point back to the host machine:
 
 ```text
-postgresql://user:password@host:5432/db?sslmode=require
+postgresql://postgres:mysecretpassword@host.docker.internal:5432/postgres
+```
+
+Do not use `localhost` for the local DB URL when running the helper in Docker, because `localhost` means the helper container itself.
+
+For production, use the real RDS/Postgres hostname:
+
+```text
+postgresql://user:password@encrypted-ebs-db.example.us-west-2.rds.amazonaws.com:5432/ebdb
 ```
 
 ## Build

@@ -37,7 +37,6 @@ const summarizeDatabaseUrl = (databaseUrl: string) => {
       host: parsedUrl.hostname,
       port: parsedUrl.port || 'default',
       protocol: parsedUrl.protocol,
-      sslmode: parsedUrl.searchParams.get('sslmode') || 'not-set',
     };
   } catch {
     return {
@@ -72,36 +71,7 @@ const validateDatabaseUrl = (databaseUrl: string) => {
   }
 
   if (!parsedUrl.password) {
-    throw new Error('Database URL is missing a password. Use postgresql://user:password@host:5432/db?sslmode=require.');
-  }
-};
-
-const getSslConfig = (databaseUrl: string) => {
-  try {
-    const parsedUrl = new URL(databaseUrl);
-    const sslMode = parsedUrl.searchParams.get('sslmode');
-
-    if (sslMode === 'require' || sslMode === 'no-verify') {
-      return {
-        rejectUnauthorized: false,
-      };
-    }
-  } catch {
-    return undefined;
-  }
-
-  return undefined;
-};
-
-const getConnectionString = (databaseUrl: string) => {
-  try {
-    const parsedUrl = new URL(databaseUrl);
-
-    parsedUrl.searchParams.delete('sslmode');
-
-    return parsedUrl.toString();
-  } catch {
-    return databaseUrl;
+    throw new Error('Database URL is missing a password. Use postgresql://user:password@host:5432/db.');
   }
 };
 
@@ -154,14 +124,12 @@ const findModalId = async (sessionId: string, databaseUrl: string) => {
     database: summarizeDatabaseUrl(databaseUrl),
     queryTimeoutMs: QUERY_TIMEOUT_MS,
     sessionId,
-    sslEnabled: Boolean(getSslConfig(databaseUrl)),
   });
 
   const pool = new Pool({
-    connectionString: getConnectionString(databaseUrl),
+    connectionString: databaseUrl,
     connectionTimeoutMillis: CONNECTION_TIMEOUT_MS,
     query_timeout: QUERY_TIMEOUT_MS,
-    ssl: getSslConfig(databaseUrl),
     statement_timeout: QUERY_TIMEOUT_MS,
   });
 
