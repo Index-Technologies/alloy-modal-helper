@@ -22,12 +22,6 @@ Use the cog button in the extension popup to configure:
 - Local database URL, used on `localhost`
 - Prod database URL, used on `alloy.app`
 
-For prod RDS connections, include SSL in the URL:
-
-```text
-postgresql://user:password@host:5432/db?sslmode=require
-```
-
 ## Build
 
 ```bash
